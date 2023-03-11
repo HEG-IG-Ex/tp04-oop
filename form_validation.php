@@ -2,14 +2,13 @@
     class Calculatrice
     {
         // Properties
-        public $nb1;
-        public $nb2;
-        public $operator="";
+        protected $nb1;
+        protected $nb2;
 
-        function __construct($nb1, $nb2)
+        function __construct($n1, $n2)
         {
-            $this->nb1 = $nb1;
-            $this->nb2 = $nb2;
+            $this->nb1 = $n1;
+            $this->nb2 = $n2;
         }
 
         // Methods
@@ -33,7 +32,7 @@
         }
     }
 
-    // Strawberry is inherited from Fruit
+
     class CalculatriceAvancee extends Calculatrice
     {
         function modulo()
@@ -41,7 +40,7 @@
             return $this->nb1 % $this->nb2;
         }
 
-        function power()
+        function pow()
         {
             return pow($this->nb1,$this->nb2);
         }
@@ -72,11 +71,20 @@
         $calcAdvanced = new CalculatriceAvancee($nb1, $nb2);
 
         if (isset($_POST['+'])) {
-            // ...
-          } else if (isset($_POST['-'])) {
-            // ...
-          } else {
-            // ...
-          }
+            echo $calc->add();
+        } else if (isset($_POST['-'])){
+            echo $calc->substract();
+        } else if (isset($_POST['/'])){
+            echo $calc->divide();
+        } else if (isset($_POST['*'])){
+            echo $calc->multiply();
+        } else if (isset($_POST['%'])){
+            echo $calcAdvanced->modulo();
+        } else if (isset($_POST['^'])){
+            echo $calcAdvanced->pow();
+        } else if (isset($_POST['brand'])){
+            echo $calcAdvanced::brand();
+        }
+
     }
 ?>
